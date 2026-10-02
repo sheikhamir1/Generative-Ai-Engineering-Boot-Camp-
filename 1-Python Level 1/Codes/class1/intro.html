@@ -1,0 +1,1112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Understanding Programming Languages & Python</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #f4f5f9;
+        color: #1f2937;
+        line-height: 1.6;
+      }
+
+      .presentation-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .slide {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        padding: 40px;
+        margin-bottom: 30px;
+        min-height: 70vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .slide-header {
+        margin-bottom: 30px;
+        border-bottom: 2px solid #d1c4e9;
+        padding-bottom: 15px;
+      }
+
+      .slide-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 2.5rem;
+        color: #673ab7;
+        margin-bottom: 10px;
+      }
+
+      .slide-subtitle {
+        font-size: 1.2rem;
+        color: #4b5563;
+      }
+
+      .slide-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .text-section {
+        margin-bottom: 20px;
+      }
+
+      .text-section h3 {
+        font-family: "Montserrat", sans-serif;
+        color: #673ab7;
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+      }
+
+      .text-section p {
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+      }
+
+      .image-container {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+      }
+
+      .image-container img {
+        max-width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      }
+
+      .list-section {
+        margin-bottom: 20px;
+      }
+
+      .list-section ul {
+        padding-left: 25px;
+      }
+
+      .list-section li {
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+      }
+
+      .two-column {
+        display: flex;
+        gap: 30px;
+        margin-top: 20px;
+      }
+
+      .column {
+        flex: 1;
+      }
+
+      .highlight-box {
+        background-color: #ede7f6;
+        border-left: 4px solid #673ab7;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 0 8px 8px 0;
+      }
+
+      .navigation {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .nav-btn {
+        background-color: #673ab7;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .nav-btn:hover {
+        background-color: #512da8;
+        transform: scale(1.1);
+      }
+
+      .progress-indicator {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 6px;
+        background-color: #673ab7;
+        z-index: 101;
+        transition: width 0.3s ease;
+      }
+
+      .footer {
+        text-align: center;
+        padding: 20px;
+        color: #4b5563;
+        font-size: 0.9rem;
+      }
+
+      .info-card {
+        background-color: #fcfbfe;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        border: 1px solid #d1c4e9;
+      }
+
+      .info-card h4 {
+        color: #673ab7;
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+      }
+
+      .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+
+      .comparison-table th,
+      .comparison-table td {
+        border: 1px solid #d1c4e9;
+        padding: 12px;
+        text-align: left;
+      }
+
+      .comparison-table th {
+        background-color: #ede7f6;
+        color: #673ab7;
+      }
+
+      .comparison-table tr:nth-child(even) {
+        background-color: #fcfbfe;
+      }
+
+      .qa-pair {
+        margin-bottom: 25px;
+        padding: 15px;
+        background-color: #fcfbfe;
+        border: 1px solid #d1c4e9;
+        border-radius: 8px;
+      }
+
+      .question {
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: #673ab7;
+        margin-bottom: 10px;
+      }
+
+      .answer {
+        padding-left: 20px;
+      }
+
+      .protocol-card {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        padding: 15px;
+        background-color: #fcfbfe;
+        border: 1px solid #d1c4e9;
+        border-radius: 8px;
+      }
+
+      .protocol-icon {
+        font-size: 2.5rem;
+        color: #673ab7;
+        margin-right: 20px;
+        width: 60px;
+        text-align: center;
+      }
+
+      .protocol-info {
+        flex: 1;
+      }
+
+      .protocol-info h4 {
+        margin-bottom: 5px;
+        color: #673ab7;
+        font-size: 1.4rem;
+      }
+
+      .frame-structure {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 20px 0;
+      }
+
+      .frame-field {
+        background-color: #ede7f6;
+        border: 1px solid #673ab7;
+        border-radius: 6px;
+        padding: 12px;
+        text-align: center;
+        flex-grow: 1;
+        min-width: 120px;
+        font-size: 1.1rem;
+      }
+
+      .frame-field.primary {
+        background-color: #673ab7;
+        color: white;
+        font-weight: bold;
+      }
+
+      .process-flow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 20px 0;
+        flex-wrap: wrap;
+      }
+
+      .process-step {
+        background-color: #fcfbfe;
+        border: 2px solid #d1c4e9;
+        border-radius: 8px;
+        padding: 15px;
+        text-align: center;
+        width: 160px;
+        font-weight: 500;
+      }
+
+      .process-arrow {
+        color: #673ab7;
+        font-size: 1.8rem;
+        margin: 0 10px;
+      }
+
+      .bit-position {
+        display: flex;
+        align-items: center;
+        margin: 15px 0;
+      }
+
+      .bit-position-value {
+        background-color: #1f2937;
+        color: #4ade80;
+        font-family: monospace;
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+        border-radius: 6px;
+        padding: 10px 15px;
+        text-align: center;
+        width: 100%;
+      }
+
+      .error-types {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        margin: 20px 0;
+        flex-wrap: wrap;
+      }
+
+      .error-type {
+        text-align: left;
+        width: calc(33% - 15px);
+        padding: 20px;
+        background-color: #fcfbfe;
+        border: 1px solid #d1c4e9;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .error-type h4 {
+        color: #673ab7;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+      }
+
+      pre {
+        background-color: #1f2937;
+        color: #f3f4f6;
+        padding: 15px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-family: monospace;
+        font-size: 1.1rem;
+        margin-top: 10px;
+      }
+
+      @media (max-width: 768px) {
+        .slide {
+          padding: 20px;
+        }
+        .slide-title {
+          font-size: 1.8rem;
+        }
+        .two-column {
+          flex-direction: column;
+        }
+        .navigation {
+          bottom: 20px;
+          top: auto;
+          flex-direction: row;
+        }
+        .error-type {
+          width: 100%;
+        }
+        .process-flow {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .process-arrow {
+          transform: rotate(90deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="progress-indicator" id="progressBar"></div>
+
+    <div class="navigation">
+      <button class="nav-btn" id="topBtn" title="Go to Top">&#8679;</button>
+      <button class="nav-btn" id="downBtn" title="Go to Bottom">&#8681;</button>
+    </div>
+
+    <div class="presentation-container">
+      <!-- Slide 1: The Big Picture -->
+      <div class="slide">
+        <div class="slide-header">
+          <h1 class="slide-title">1. The Big Picture</h1>
+          <p class="slide-subtitle">
+            Understanding Programming Languages and Python
+          </p>
+        </div>
+        <div class="slide-content">
+          <div class="image-container">
+            <!-- Image used only on the first page as requested -->
+            <img
+              src="https://plus.unsplash.com/premium_photo-1661877737564-3dfd7282efcb?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZ3JhbW1pbmclMjBweXRob258ZW58MHx8MHx8fDA%3D"
+              alt="Abstract Programming and Tech Background"
+            />
+          </div>
+
+          <div class="info-card">
+            <h4>Where Does a Programming Language Fit?</h4>
+            <p>
+              Think of computer science as a hierarchy. Programming languages
+              are the essential tools humans use to communicate instructions
+              directly to computers.
+            </p>
+            <div class="frame-structure">
+              <div class="frame-field">
+                <strong>Hardware:</strong> CPU, Memory, Storage
+              </div>
+              <div class="frame-field primary">
+                <strong>Software:</strong> OS, Apps, Programming
+              </div>
+              <div class="frame-field">
+                <strong>AI:</strong> Machine Learning, Deep Learning, GenAI
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: What Is a Programming Language? -->
+      <div class="slide">
+        <div class="slide-header">
+          <h1 class="slide-title">2. What Is a Programming Language?</h1>
+          <p class="slide-subtitle">
+            Bridging the gap between human thought and machine action
+          </p>
+        </div>
+        <div class="slide-content">
+          <div class="highlight-box">
+            <p>
+              <strong>Simple Definition:</strong> A programming language is a
+              formal language used to write instructions that a computer can
+              understand and execute.
+            </p>
+          </div>
+          <div class="two-column">
+            <div class="column info-card">
+              <h4>🙋‍♂️ What Humans Understand</h4>
+              <ul
+                class="list-section"
+                style="list-style: none; padding: 0; margin-top: 15px"
+              >
+                <li>✔️ Open Chrome</li>
+                <li>✔️ Search Google</li>
+                <li>✔️ Play a video</li>
+              </ul>
+            </div>
+            <div class="column info-card">
+              <h4>💻 What Computers Understand</h4>
+              <p>They only understand 0s and 1s (Binary)</p>
+              <div class="bit-position">
+                <div class="bit-position-value">10110010 00101101</div>
+              </div>
+            </div>
+          </div>
+          <div class="text-section">
+            <p>
+              Writing directly in binary would be impossible for large programs.
+              Therefore, programming languages were invented to make our lives
+              easier!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: Why Do We Need Them & How They Run -->
+      <div class="slide">
+        <div class="slide-header">
+          <h1 class="slide-title">3. Why Do We Need Them?</h1>
+          <p class="slide-subtitle">The Translation Process</p>
+        </div>
+        <div class="slide-content">
+          <div class="text-section">
+            <p>
+              Imagine telling a robot:
+              <em>"Go forward, turn left, pick up the box"</em> instead of
+              dictating millions of binary bits like
+              <em>"101101100011010101..."</em>. Programming languages act as our
+              translators.
+            </p>
+          </div>
+
+          <div class="process-flow">
+            <div class="process-step">Human</div>
+            <div class="process-arrow">&#8594;</div>
+            <div
+              class="process-step"
+              style="
+                background: #ede7f6;
+                border-color: #673ab7;
+                font-weight: bold;
+              "
+            >
+              Programming Language
+            </div>
+            <div class="process-arrow">&#8594;</div>
+            <div class="process-step">Compiler / Interpreter</div>
+            <div class="process-arrow">&#8594;</div>
+            <div
+              class="process-step primary"
+              style="background: #673ab7; color: white; border: none"
+            >
+              Computer
+            </div>
+          </div>
+
+          <div class="qa-pair" style="margin-top: 30px">
+            <div class="question">4. How Does a Program Actually Run?</div>
+            <div class="answer">
+              <p>Suppose you write: <code>print("Hello World")</code></p>
+              <div class="process-flow" style="margin-top: 15px">
+                <div class="process-step">Python Code</div>
+                <div class="process-arrow">&#8594;</div>
+                <div class="process-step">Python Interpreter</div>
+                <div class="process-arrow">&#8594;</div>
+                <div class="process-step">CPU Executes</div>
+                <div class="process-arrow">&#8594;</div>
+                <div
+                  class="process-step primary"
+                  style="background: #673ab7; color: white; border: none"
+                >
+                  Output: Hello World
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4: Types of Programming Languages -->
+      <div class="slide">
+        <div class="slide-header">
+          <h1 class="slide-title">5. Types of Programming Languages</h1>
+          <p class="slide-subtitle">Low-Level vs High-Level Languages</p>
+        </div>
+        <div class="slide-content">
+          <div class="two-column">
+            <div class="column info-card">
+              <h4>Low-Level Languages</h4>
+              <p>
+                Closer to hardware (e.g., Machine Language, Assembly Language).
+              </p>
+              <pre><code>MOV AX, 5
+ADD AX, 2</code></pre>
+              <ul style="margin-top: 15px; padding-left: 20px; color: #4b5563">
+                <li><strong>Advantages:</strong> Very fast, very efficient</li>
+                <li>
+                  <strong>Disadvantages:</strong> Hard to learn, hard to
+                  maintain
+                </li>
+              </ul>
+            </div>
+            <div
+              class="column info-card"
+              style="border-color: #673ab7; border-width: 2px"
+            >
+              <h4>High-Level Languages</h4>
+              <p>
+                Closer to human language (e.g., Python, Java, C++, JavaScript).
+              </p>
+              <pre><code>x = 5
+y = 2
+print(x + y)</code></pre>
+              <ul style="margin-top: 15px; padding-left: 20px; color: #4b5563">
+                <li>
+                  <strong>Advantages:</strong> Easy to read, easy to write
+                </li>
+                <li>
+                  <strong>Disadvantages:</strong> Slightly slower execution (but
+                  worth the trade-off!)
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 5: What is Python -->
+      <div class="slide">
+        <div class="slide-header">
+          <h1 class="slide-title">6. What Is Python?</h1>
+          <p class="slide-subtitle">
+            The undisputed king of modern programming
+          </p>
+        </div>
+        <div class="slide-content">
+          <div class="protocol-card">
+            <div class="protocol-icon">&#128013;</div>
+            <div class="protocol-info">
+              <h4>The Definition</h4>
+              <p>
+                Python is a high-level, interpreted, general-purpose programming
+                language created by <strong>Guido van Rossum</strong> and
+                released in <strong>1991</strong>.
+              </p>
+            </div>
+          </div>
+          <p style="margin: 15px 0">
+            Python was designed from the very beginning to be:
+          </p>
+          <div class="frame-structure">
+            <div class="frame-field">Simple</div>
+            <div class="frame-field">Readable</div>
+            <div class="frame-field">Easy to Learn</div>
+            <div class="frame-field primary">Powerful</div>
+          </div>
+
+          <div class="highlight-box" style="margin-top: 30px">
+            <h3>7. Why Is Python So Popular?</h3>
+            <p>
+              Because it looks very similar to standard English. Even complete
+              beginners can understand what the code is doing just by reading
+              it.
+            </p>
+            <pre><code>name = "Rohan"
+
+if name == "Rohan":
+    print("Welcome")</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 6: Real Life Uses -->
+      <div class="slide">
+        <div class="slide-header">
+          <h1 class="slide-title">8. Real-Life Uses of Python</h1>
+          <p class="slide-subtitle">Where is Python used in the real world?</p>
+        </div>
+        <div class="slide-content">
+          <div class="error-types">
+            <div class="error-type">
+              <h4>🌐 Web Development</h4>
+              <p>Frameworks: Django, Flask, FastAPI.</p>
+              <p style="color: #4b5563; font-size: 0.9rem; margin-top: 5px">
+                Used for Websites, APIs, Backend Systems.
+              </p>
+            </div>
+            <div class="error-type">
+              <h4>🤖 Artificial Intelligence</h4>
+              <p>Used by OpenAI, Google, Meta, Microsoft.</p>
+              <p style="color: #4b5563; font-size: 0.9rem; margin-top: 5px">
+                Libraries: TensorFlow, PyTorch, Scikit-Learn.
+              </p>
+            </div>
+            <div class="error-type">
+              <h4>📊 Data Science</h4>
+              <p><code>import pandas as pd</code></p>
+              <p style="color: #4b5563; font-size: 0.9rem; margin-top: 5px">
+                Used for Data analysis, Visualization, Statistics.
+              </p>
+            </div>
+            <div class="error-type">
+              <h4>⚙️ Automation</h4>
+              <p>Automate boring stuff easily!</p>
+              <p style="color: #4b5563; font-size: 0.9rem; margin-top: 5px">
+                Send emails automatically, Rename files, Generate reports.
+              </p>
+            </div>
+            <div class="error-type">
+              <h4>🔒 Cybersecurity</h4>
+              <p>The hacker's toolkit.</p>
+              <p style="color: #4b5563; font-size: 0.9rem; margin-top: 5px">
+                Network tools, Security scripts, Penetration testing.
+              </p>
+            </div>
+            <div
+              class="error-type"
+              style="border: 2px solid #673ab7; background-color: #ede7f6"
+            >
+              <h4>✨ Generative AI</h4>
+              <p><strong>Most important for you!</strong></p>
+              <p style="color: #4b5563; font-size: 0.9rem; margin-top: 5px">
+                OpenAI API, LangChain, LlamaIndex, CrewAI, Transformers.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 7: Why is it Easy? -->
+      <div class="slide">
+        <div class="slide-header">
+          <h1 class="slide-title">9. Why Is Python Easy?</h1>
+          <p class="slide-subtitle">
+            Say goodbye to complicated brackets and syntax clutter
+          </p>
+        </div>
+        <div class="slide-content">
+          <div class="text-section">
+            <p>
+              Python uses clean <strong>indentation</strong> (spaces) instead of
+              complicated symbols to group blocks of code. Look at the
+              difference below:
+            </p>
+          </div>
+          <div class="two-column">
+            <div
+              class="column info-card"
+              style="background: #ede7f6; border-left: 4px solid #673ab7"
+            >
+              <h4>🐍 Python (Clean & Simple)</h4>
+              <pre><code>if age >= 18:
+    print("Adult")</code></pre>
+            </div>
+            <div class="column">
+              <div class="info-card" style="margin-bottom: 15px">
+                <h4>C Language</h4>
+                <pre><code>if(age >= 18)
+{
+    printf("Adult");
+}</code></pre>
+              </div>
+              <div class="info-card">
+                <h4>☕ Java</h4>
+                <pre><code>if(age >= 18){
+    System.out.println("Adult");
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 8: Main Characteristics & Comparison -->
+      <div class="slide">
+        <div class="slide-header">
+          <h1 class="slide-title">10. Python's Characteristics & Comparison</h1>
+          <p class="slide-subtitle">How does it stack up against the rest?</p>
+        </div>
+        <div class="slide-content">
+          <div class="frame-structure">
+            <div class="frame-field">
+              <strong>Interpreted</strong><br /><small>Runs line by line</small>
+            </div>
+            <div class="frame-field">
+              <strong>Object-Oriented</strong><br /><small
+                >Everything is treated as objects</small
+              >
+            </div>
+            <div class="frame-field">
+              <strong>Cross Platform</strong><br /><small
+                >Windows, Linux, macOS</small
+              >
+            </div>
+            <div class="frame-field primary">
+              <strong>Huge Ecosystem</strong><br /><small
+                >Hundreds of thousands of packages (pip)</small
+              >
+            </div>
+          </div>
+
+          <div class="text-section" style="margin-top: 30px">
+            <h3>11. Comparison: Python vs Other Languages</h3>
+            <div style="overflow-x: auto">
+              <table class="comparison-table">
+                <tr>
+                  <th>Feature</th>
+                  <th>Python</th>
+                  <th>C</th>
+                  <th>C++</th>
+                  <th>Java</th>
+                  <th>JavaScript</th>
+                </tr>
+                <tr>
+                  <td>Easy to Learn</td>
+                  <td><strong>Very Easy</strong></td>
+                  <td>Hard</td>
+                  <td>Hard</td>
+                  <td>Medium</td>
+                  <td>Easy</td>
+                </tr>
+                <tr>
+                  <td>Speed</td>
+                  <td>Medium</td>
+                  <td>Very Fast</td>
+                  <td>Very Fast</td>
+                  <td>Fast</td>
+                  <td>Fast</td>
+                </tr>
+                <tr>
+                  <td>AI/ML</td>
+                  <td><strong>Excellent</strong></td>
+                  <td>Poor</td>
+                  <td>Limited</td>
+                  <td>Good</td>
+                  <td>Limited</td>
+                </tr>
+                <tr>
+                  <td>Web Development</td>
+                  <td><strong>Excellent</strong></td>
+                  <td>Poor</td>
+                  <td>Limited</td>
+                  <td>Excellent</td>
+                  <td>Excellent</td>
+                </tr>
+                <tr>
+                  <td>Beginner Friendly</td>
+                  <td><strong>Yes</strong></td>
+                  <td>No</td>
+                  <td>No</td>
+                  <td>Medium</td>
+                  <td>Yes</td>
+                </tr>
+                <tr>
+                  <td>Memory Management</td>
+                  <td>Automatic</td>
+                  <td>Manual</td>
+                  <td>Manual</td>
+                  <td>Automatic</td>
+                  <td>Automatic</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 9: A Quick Look at Other Languages -->
+      <div class="slide">
+        <div class="slide-header">
+          <h1 class="slide-title">12. What About Other Languages?</h1>
+          <p class="slide-subtitle">Understanding the broader ecosystem</p>
+        </div>
+        <div class="slide-content">
+          <div class="two-column">
+            <div class="column">
+              <div class="info-card">
+                <h4>12. What Is C?</h4>
+                <p>
+                  Created by Dennis Ritchie. Purpose: System Programming,
+                  Operating Systems, Embedded Systems.
+                </p>
+                <ul
+                  style="
+                    padding-left: 20px;
+                    font-size: 0.9rem;
+                    margin-top: 10px;
+                  "
+                >
+                  <li>
+                    <strong>Pros:</strong> Very fast, direct hardware control.
+                  </li>
+                  <li><strong>Cons:</strong> Difficult for beginners.</li>
+                </ul>
+              </div>
+              <div class="info-card">
+                <h4>13. What Is C++?</h4>
+                <p>
+                  An extension of C created by Bjarne Stroustrup. Used for Game
+                  development, Graphics software, and High-performance
+                  applications.
+                </p>
+              </div>
+            </div>
+            <div class="column">
+              <div class="info-card">
+                <h4>14. What Is Java?</h4>
+                <p>
+                  Created by James Gosling. Highly popular for Enterprise
+                  software, Android development, and Banking systems.
+                </p>
+              </div>
+              <div class="info-card">
+                <h4>15. What Is JavaScript?</h4>
+                <p>
+                  Runs mainly inside web browsers. Used for Interactive
+                  websites, Frontend development, and Full-stack web apps.
+                </p>
+                <div
+                  class="highlight-box"
+                  style="margin: 10px 0 0 0; padding: 10px"
+                >
+                  <em>Without JavaScript, websites would be mostly static!</em>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 10: Python Versions -->
+      <div class="slide">
+        <div class="slide-header">
+          <h1 class="slide-title">16. Python's Evolution & Modern Era</h1>
+          <p class="slide-subtitle">
+            From legacy code to the future of Artificial Intelligence
+          </p>
+        </div>
+        <div class="slide-content">
+          <div class="process-flow">
+            <div class="process-step">
+              <strong>Python 1.x</strong><br />(1991)<br /><small
+                >Basic & Historical</small
+              >
+            </div>
+            <div class="process-arrow">&#8594;</div>
+            <div class="process-step">
+              <strong>Python 2.x</strong><br />(2000-2020)<br /><small
+                >Deprecated</small
+              >
+            </div>
+            <div class="process-arrow">&#8594;</div>
+            <div
+              class="process-step primary"
+              style="background: #673ab7; color: white; border: none"
+            >
+              <strong>Python 3.x</strong><br />(2008-Present)<br /><small
+                >The Modern Standard</small
+              >
+            </div>
+          </div>
+
+          <div class="qa-pair" style="margin-top: 20px">
+            <div class="question">
+              17. Features of Modern Python (3.10, 3.11, 3.12, 3.13+)
+            </div>
+            <div class="answer">
+              <ul style="padding-left: 20px; line-height: 1.8">
+                <li>
+                  <strong>Type Hints:</strong>
+                  <code>def add(a: int, b: int) -> int:</code>
+                </li>
+                <li>
+                  <strong>Pattern Matching:</strong>
+                  <code>match command: case "start":</code>
+                </li>
+                <li>
+                  <strong>Faster Execution:</strong> Python 3.11+ is
+                  significantly faster than older versions.
+                </li>
+                <li>
+                  <strong>Better Error Messages:</strong> Exact error locations
+                  instead of generic "SyntaxErrors".
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="highlight-box">
+            <h4>18. Which Python Version Should You Learn?</h4>
+            <p>
+              For MCA, Generative AI, and future AI Engineering:
+              <strong>✅ Learn Python 3 only.</strong> Do not spend time
+              learning Python 2. Current AI tools (PyTorch, TensorFlow,
+              LangChain, Hugging Face) all require modern Python!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 11: Summary & Reflection -->
+      <div class="slide">
+        <div class="slide-header">
+          <h1 class="slide-title">Summary & Reflection</h1>
+          <p class="slide-subtitle">
+            Your path forward to becoming a GenAI Engineer
+          </p>
+        </div>
+        <div class="slide-content">
+          <div class="two-column">
+            <div class="column">
+              <div class="info-card">
+                <h4>Islamic Reflection</h4>
+                <p>
+                  Allah has blessed humanity with the ability to acquire
+                  knowledge and build tools that solve problems. Programming is
+                  essentially the art of giving precise instructions to
+                  machines.
+                </p>
+                <p style="margin-top: 10px">
+                  When used for beneficial purposes—education, healthcare,
+                  helping people, spreading beneficial knowledge, or building
+                  ethical AI—it can be a means of serving society and earning
+                  reward. The pursuit of beneficial knowledge (<em
+                    >'ilm nafi'</em
+                  >) is highly valued in Islam.
+                </p>
+              </div>
+              <div class="text-section" style="margin-top: 20px">
+                <p>
+                  <em
+                    >"Python should be your primary language, while having basic
+                    familiarity with C, C++, Java, and JavaScript will help you
+                    understand the broader software ecosystem."</em
+                  >
+                </p>
+              </div>
+            </div>
+            <div class="column">
+              <div
+                class="info-card"
+                style="
+                  background: #ede7f6;
+                  border: 2px solid #673ab7;
+                  text-align: center;
+                "
+              >
+                <h4>GenAI Engineer Roadmap</h4>
+                <div
+                  style="
+                    font-weight: bold;
+                    line-height: 2.2;
+                    margin-top: 15px;
+                    font-size: 1.1rem;
+                    color: #1f2937;
+                  "
+                >
+                  Programming Fundamentals <br />&#8595;<br />
+                  Python Basics <br />&#8595;<br />
+                  Object-Oriented Programming <br />&#8595;<br />
+                  Data Structures & Algorithms <br />&#8595;<br />
+                  NumPy + Pandas <br />&#8595;<br />
+                  Machine Learning <br />&#8595;<br />
+                  Deep Learning <br />&#8595;<br />
+                  <span
+                    style="
+                      color: white;
+                      background-color: #673ab7;
+                      padding: 5px 15px;
+                      border-radius: 6px;
+                      display: inline-block;
+                      margin-top: 5px;
+                    "
+                    >LLMs & Generative AI</span
+                  >
+                  <br />&#8595;<br />
+                  <span style="color: #673ab7; font-size: 1.3rem"
+                    >AI Engineering</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Scroll to navigate or use the navigation arrows</p>
+    </div>
+
+    <script>
+      // Navigation functionality
+      document.getElementById("topBtn").addEventListener("click", function () {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      document.getElementById("downBtn").addEventListener("click", function () {
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: "smooth",
+        });
+      });
+
+      // Progress bar functionality
+      window.addEventListener("scroll", function () {
+        const winScroll =
+          document.body.scrollTop || document.documentElement.scrollTop;
+        const height =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById("progressBar").style.width = scrolled + "%";
+      });
+
+      // Add fade-in animation to slides when they come into view
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1,
+      };
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".slide").forEach((slide) => {
+        slide.style.opacity = "0";
+        slide.style.transform = "translateY(20px)";
+        slide.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+        observer.observe(slide);
+      });
+    </script>
+  </body>
+</html>
